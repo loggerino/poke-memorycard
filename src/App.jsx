@@ -1,11 +1,11 @@
-import Card from "./components/Card"
+import CardGrid from "./components/CardGrid"
 
 function App() {
 
   return (
     <div className="app">
       <h1>Memory Card Game</h1>
-      <Card />
+      <CardGrid />
     </div>
   )
 }
