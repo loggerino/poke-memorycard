@@ -36,20 +36,31 @@ const CardGrid = () => {
         fetchPokemonData();
     }, [])
 
+    const shuffleCards = () => {
+        setPokemonData((prevPokemonData) => {
+            const shuffledData = [...prevPokemonData];
+            for (let i = shuffledData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledData[i], shuffledData[j]] = [shuffledData[j], shuffledData[i]];
+            }
+            return shuffledData;
+        });
+    }
+
     const handleCardClick = (id) => {
+        shuffleCards()
         console.log('Card clicked:', id);
         if (clickedCards.includes(id)) {
-          setClickedCards([]);
-          if (score > bestScore) {
-            setBestScore(score);
-          }
-          setScore(0);
+            setClickedCards([]);
+            if (score > bestScore) {
+                setBestScore(score);
+            }
+            setScore(0);
         } else {
-          setClickedCards([...clickedCards, id]);
-          setScore(score + 1);
+            setClickedCards([...clickedCards, id]);
+            setScore(score + 1);
         }
-      };
-      
+    };
 
     return (
         <div className="card-grid">
