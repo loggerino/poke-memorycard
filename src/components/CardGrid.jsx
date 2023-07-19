@@ -3,7 +3,7 @@ import Card from './Card';
 import Scoreboard from './Scoreboard';
 import axios from 'axios';
 
-const CardGrid = ({ onWin }) => {
+const CardGrid = ({ onWin, isClickable  }) => {
     const [pokemonData, setPokemonData] = useState([])
     const [clickedCards, setClickedCards] = useState([])
     const [score, setScore] = useState(0)
@@ -49,7 +49,8 @@ const CardGrid = ({ onWin }) => {
     }
 
     const handleCardClick = (id) => {
-        console.log("Card clicked:", id);
+        if (!isClickable) return;         
+
         if (clickedCards.includes(id)) {
             setClickedCards([]);
             if (score > bestScore) {
