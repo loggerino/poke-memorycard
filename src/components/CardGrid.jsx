@@ -3,11 +3,12 @@ import Card from './Card';
 import Scoreboard from './Scoreboard';
 import axios from 'axios';
 
-const CardGrid = () => {
+const CardGrid = ({ onWin }) => {
     const [pokemonData, setPokemonData] = useState([])
     const [clickedCards, setClickedCards] = useState([])
     const [score, setScore] = useState(0)
     const [bestScore, setBestScore] = useState(0)
+    const totalCards = 10
 
     useEffect(() => {
         const fetchPokemonData = async () => {
@@ -48,17 +49,19 @@ const CardGrid = () => {
     }
 
     const handleCardClick = (id) => {
-        shuffleCards()
-        console.log('Card clicked:', id);
+        console.log('Card clicked:', id)
         if (clickedCards.includes(id)) {
             setClickedCards([]);
             if (score > bestScore) {
-                setBestScore(score);
+                setBestScore(score)
             }
             setScore(0);
         } else {
             setClickedCards([...clickedCards, id]);
-            setScore(score + 1);
+            setScore((prevScore) => prevScore + 1)
+            if (score + 1 === totalCards) {
+                onWin(score + 1)
+            }
         }
     };
 
