@@ -49,18 +49,20 @@ const CardGrid = ({ onWin }) => {
     }
 
     const handleCardClick = (id) => {
-        console.log('Card clicked:', id)
+        console.log("Card clicked:", id);
         if (clickedCards.includes(id)) {
             setClickedCards([]);
             if (score > bestScore) {
-                setBestScore(score)
+                setBestScore(score);
             }
             setScore(0);
         } else {
             setClickedCards([...clickedCards, id]);
-            setScore((prevScore) => prevScore + 1)
-            if (score + 1 === totalCards) {
-                onWin(score + 1)
+            setScore((prevScore) => prevScore + 1);
+            if (clickedCards.length + 1 === totalCards) {
+                setBestScore(totalCards);
+                onWin(totalCards);
+                setScore(0)
             }
         }
     };
