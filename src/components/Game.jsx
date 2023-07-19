@@ -21,9 +21,9 @@ const Game = () => {
     return (
         <div className="game">
             {gameStatus === "won" ? (
-                <div className="win-message">
+                <div className="win-message text-center mt-4">
                     <p>Congratulations! You won the game!</p>
-                    <button onClick={handlePlayAgain}>Play Again</button>
+                    <button className="btn btn-primary" onClick={handlePlayAgain}>Play Again</button>
                 </div>
             ) : null}
             <CardGrid onWin={handleWin} isClickable={isClickable} />
