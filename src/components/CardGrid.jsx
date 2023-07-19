@@ -50,7 +50,7 @@ const CardGrid = ({ onWin, isClickable  }) => {
 
     const handleCardClick = (id) => {
         if (!isClickable) return;         
-
+        shuffleCards()
         if (clickedCards.includes(id)) {
             setClickedCards([]);
             if (score > bestScore) {
