@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import Scoreboard from './Scoreboard';
+import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
-const CardGrid = ({ onWin, isClickable  }) => {
+const CardGrid = ({ onWin, isClickable }) => {
     const [pokemonData, setPokemonData] = useState([])
     const [clickedCards, setClickedCards] = useState([])
     const [score, setScore] = useState(0)
@@ -49,8 +50,8 @@ const CardGrid = ({ onWin, isClickable  }) => {
     }
 
     const handleCardClick = (id) => {
-        if (!isClickable) return;         
-        // shuffleCards()
+        if (!isClickable) return;
+        shuffleCards()
         if (clickedCards.includes(id)) {
             setClickedCards([]);
             if (score > bestScore) {
@@ -71,9 +72,15 @@ const CardGrid = ({ onWin, isClickable  }) => {
     return (
         <div className="card-grid">
             <Scoreboard score={score} bestScore={bestScore} />
-            {pokemonData.map((pokemon) => (
-                <Card key={pokemon.id} name={pokemon.name} spriteUrl={pokemon.spriteUrl} onClick={() => handleCardClick(pokemon.id)} />
-            ))}
+            <Container>
+                <Row>
+                    {pokemonData.map((pokemon) => (
+                        <Col key={pokemon.id} md={3} sm={6}>
+                            <Card name={pokemon.name} spriteUrl={pokemon.spriteUrl} onClick={() => handleCardClick(pokemon.id)} />
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
         </div>
     )
 }
