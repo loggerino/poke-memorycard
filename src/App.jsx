@@ -5,7 +5,7 @@ import React from "react";
 function App() {
 
   return (
-    <div className="app container mt-5">
+    <div className="app container mt-4">
       <h1 className="text-center mb-4">Memory Card Game</h1>
       <Game />
     </div>

@@ -73,9 +73,9 @@ const CardGrid = ({ onWin, isClickable }) => {
         <div className="card-grid">
             <Scoreboard score={score} bestScore={bestScore} />
             <Container>
-                <Row>
+                <Row className='d-flex justify-content-center align-items-center'>
                     {pokemonData.map((pokemon) => (
-                        <Col key={pokemon.id} md={3} sm={6}>
+                        <Col key={pokemon.id} md={2} sm={6}>
                             <Card name={pokemon.name} spriteUrl={pokemon.spriteUrl} onClick={() => handleCardClick(pokemon.id)} />
                         </Col>
                     ))}
